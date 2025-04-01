@@ -82,5 +82,20 @@ SELECT saldo FROM Conta WHERE id = 1;
 UPDATE Conta SET saldo = saldo - 50 WHERE id = 1;
 COMMIT;");
 
+-- 5 --
 
+INSERT INTO Tentativas (equipe_id, questao_id, resposta) VALUES
+(1, 5, "Bloqueio exclusivo: transações que tentem ler ou escrever em um campo bloqueado devem esperar na fila até que o valor seja liberado
+Bloqueio compartilhado: Permite que outras transações leiam o mesmo valor ao mesmo tempo, mas impede operações de escrita");
 
+INSERT INTO Tentativas (equipe_id, questao_id, resposta) VALUES
+(1, 5, "A equipe abriu uma transação e execultou atribuio um lock, após isso foi executado uma outra transação de leitura e escrita, onde a escrita ficou travada até a liberação da operação anterior");
+
+INSERT INTO Tentativas (equipe_id, questao_id, resposta) VALUES
+(1, 5, "START TRANSACTION;
+SELECT saldo FROM Conta WHERE id = 1 LOCK IN SHARE MODE;");
+
+INSERT INTO Tentativas (equipe_id, questao_id, resposta) VALUES
+(1, 5, "START TRANSACTION;
+SELECT saldo FROM Conta WHERE id = 1;
+UPDATE Conta SET saldo = saldo - 50 WHERE id = 1;");
